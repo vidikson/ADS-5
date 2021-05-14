@@ -25,7 +25,7 @@ class TPQueue {
   ~TPQueue() {
     while (head)
       pop();
-  
+  }
 
   void push(const T &data) {
     if (tail && head) {
@@ -34,16 +34,14 @@ class TPQueue {
         temp = create(data);
         temp->next = head;
         head = temp;
-      }
-      else {
+      } else {
         while (temp->next) {
           if (temp->next->data.prior < data.prior) {
             ITEM *item = create(data);
             item->next = temp->next;
             temp->next = item;
             break;
-          }
-          else {
+          } else {
             temp = temp->next;
           }
         }
@@ -52,8 +50,7 @@ class TPQueue {
         tail->next = create(data);
         tail = tail->next;
       }
-    }
-    else {
+    } else {
       head = create(data);
       tail = head;
     }
